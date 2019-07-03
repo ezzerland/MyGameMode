@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import ezzerland.ravenloftmc.MyGameMode;
 
 public class Reload implements CommandExecutor
-{ //This handles [gamemodesurvival, gms, gm0]
+{ //This handles [mygamemodereload, gmreload, mgmreload, mgmr, gmr]
   private MyGameMode mgm;
   public Reload (MyGameMode plugin) { mgm = plugin; }
   
