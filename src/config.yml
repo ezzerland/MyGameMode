@@ -25,6 +25,7 @@ getmode: "&b%target% &7is in Game Mode&8: &2%mode%"
 #============================================#
 syntax:
   wrongname: "&b%target% &ccould not be found or may be offline. Please check the name."
+  invalidmode: "&6%mode% &cis not a valid game mode."
 
 #============================================#
 #                    Reload                  #
