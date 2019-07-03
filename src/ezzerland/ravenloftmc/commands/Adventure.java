@@ -20,12 +20,12 @@ public class Adventure implements CommandExecutor
       Player target = mgm.getServer().getPlayer(args[0]);
       if ((target != null) && (mgm.setGameMode(target, GameMode.ADVENTURE)))
       {
-        sender.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%target%", args[0], mgm.CleanMessage("%mode%", "Adventure", mgm.getConfig().getString("setmode.other")))));
-        target.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%target%", args[0], mgm.CleanMessage("%mode%", "Adventure", mgm.getConfig().getString("setmode.byother")))));
+        sender.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%target%", args[0], mgm.CleanMessage("%mode%", "ADVENTURE", mgm.getConfig().getString("setmode.other")))));
+        target.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%target%", args[0], mgm.CleanMessage("%mode%", "ADVENTURE", mgm.getConfig().getString("setmode.byother")))));
         return true;
       }
       else { //Either couldn't find the player or they were not online
-        sender.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%target%", args[0], mgm.CleanMessage("%mode%", "Adventure", mgm.getConfig().getString("syntax.wrongname")))));
+        sender.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%target%", args[0], mgm.CleanMessage("%mode%", "ADVENTURE", mgm.getConfig().getString("syntax.wrongname")))));
         return false;
       }
     }
@@ -35,7 +35,7 @@ public class Adventure implements CommandExecutor
     { //Ignore console, player has perm so lets go!
       if (mgm.setGameMode((Player)sender, GameMode.ADVENTURE))
       {
-        sender.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%mode%", "Adventure", mgm.getConfig().getString("setmode.self"))));
+        sender.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%mode%", "ADVENTURE", mgm.getConfig().getString("setmode.self"))));
         return true;
       }
     }
