@@ -1,0 +1,32 @@
+#============================================#
+#                Change Modes                #
+#--------------------------------------------#
+# Placeholders:                              #
+#   %player%       %target%       %mode%     #
+#============================================#
+setmode:
+    self: "&7Your game mode has been set to&8: &2%mode%"
+    other: "&b%target%&7's game mode set to&8: &2%mode%"
+    byother: "&b%player% &7set your game mode to&8: &2%mode%"
+
+#============================================#
+#                  Get Mode                  #
+#--------------------------------------------#
+# Placeholders:                              #
+#   %player%       %target%       %mode%     #
+#============================================#
+getmode: "&b%target% &7is in Game Mode&8: &2%mode%"
+
+#============================================#
+#                    Syntax                  #
+#--------------------------------------------#
+# Placeholders:                              #
+#   %player%       %target%       %mode%     #
+#============================================#
+syntax:
+  wrongname: "&b%target% &ccould not be found or may be offline. Please check the name."
+
+#============================================#
+#                    Reload                  #
+#============================================#
+reload: "&8[&7MyGameMode&8] &aReload Completed!"

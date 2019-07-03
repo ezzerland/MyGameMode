@@ -1,0 +1,121 @@
+##############################################
+#                 MyGameMode                 #
+#--------------------------------------------#
+# Gives players with permission the ability  #
+# to change their game mode or others        #
+# Can also check game mode of others         #
+##############################################
+
+name: MyGameMode
+version: 1.0.0
+api-version: 1.14
+main: ezzerland.ravenloftmc.MyGameMode
+load: POSTWORLD
+description: "Change your game mode. Check or change the game mode of others"
+author: Ezzerland
+authors: [Twage, Infraction]
+
+##############################################
+#                  Commands                  #
+##############################################
+
+commands:
+  gamemode:
+    description: Change Game Mode to <mode> (Optionally Change [Player])
+    usage: /<command> <Mode> [Player]
+    aliases: [gamemode, gm]
+  gamemodesurvival:
+    description: Change game mode to Survival (Optionally Change [Player])
+    usage: /<command> [Player]
+    aliases: [gamemodesurvival, gms, gm0]
+  gamemodecreative:
+    description: Change game mode to Creative (Optionally Change [Player])
+    usage: /<command> [Player]
+    aliases: [gamemodecreative, gmc, gm1]
+  gamemodeadventure:
+    description: Change game mode to Adventure (Optionally Change [Player])
+    usage: /<command> [Player]
+    aliases: [gamemodeadventure, gms, gm2]
+  gamemodespectate:
+    description: Change game mode to creative (Optionally Change [Player])
+    usage: /<command> [Player]
+    aliases: [gamemodespectate, gmsp, gm3]
+  checkgamemode:
+    description: Check the game mode of <player>
+    usage: /<command> <Player>
+    aliases: [checkgamemode, cgm, getgamemode, ggm]
+  mygamemodereload:
+    description: Reload the configuration (language)
+    usage: /<command>
+    aliases: [mygamemodereload, gmreload, mgmreload, mgmr, gmr]
+
+##############################################
+#                Permissions                 #
+##############################################
+ 
+permissions:
+  mygamemode.*:
+    default: op
+    description: Access to all permissions
+    children:
+      mygamemode.survival: true
+      mygamemode.creative: true
+      mygamemode.adventure: true
+      mygamemode.spectate: true
+      mygamemode.check: true
+      mygamemode.reload: true
+  mygamemode.survival:
+    default: false
+    description: Gives access change self or others into Survival Mode
+    children:
+      mygamemode.survival.self: true
+      mygamemode.survival.other: true
+  mygamemode.creative:
+    default: false
+    description: Gives access change self or others into Creative Mode
+    children:
+      mygamemode.creative.self: true
+      mygamemode.creative.other: true
+  mygamemode.adventure:
+    default: false
+    description: Gives access change self or others into Adventure Mode
+    children:
+      mygamemode.adventure.self: true
+      mygamemode.adventure.other: true
+  mygamemode.spectate:
+    default: false
+    description: Gives access change self or others into Spectate Mode
+    children:
+      mygamemode.spectate.self: true
+      mygamemode.spectate.other: true
+  mygamemode.survival.self:
+    default: false
+    description: Allows player to put themself in Survival Mode
+  mygamemode.survival.other:
+    default: false
+    description: Allows player to put other player in Survival Mode
+  mygamemode.creative.self:
+    default: false
+    description: Allows player to put themself in Creative Mode
+  mygamemode.creative.other:
+    default: false
+    description: Allows player to put other player in Creative Mode
+  mygamemode.adventure.self:
+    default: false
+    description: Allows player to put themself in Adventure Mode
+  mygamemode.adventure.other:
+    default: false
+    description: Allows player to put other player in Adventure Mode
+  mygamemode.spectate.self:
+    default: false
+    description: Allows player to put themself in Spectate Mode
+  mygamemode.spectate.other:
+    default: false
+    description: Allows player to put other player in Spectate Mode
+  mygamemode.check:
+    default: false
+    description: Allows player check what game mode another player is in
+  mygamemode.reload:
+    default: false
+    description: Access to the reload command
+    
