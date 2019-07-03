@@ -1,4 +1,4 @@
-package ezzerland.ravenloft.commands;
+package ezzerland.ravenloftmc.commands;
 
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import ezzerland.ravenloft.MyGameMode;
+import ezzerland.ravenloftmc.MyGameMode;
 
 public class Creative implements CommandExecutor
 { //This handles [gamemodecreative, gmc, gm1]

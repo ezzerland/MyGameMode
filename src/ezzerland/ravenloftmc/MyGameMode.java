@@ -1,16 +1,16 @@
-package ezzerland.ravenloft;
+package ezzerland.ravenloftmc;
 
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import ezzerland.ravenloft.commands.Adventure;
-import ezzerland.ravenloft.commands.Check;
-import ezzerland.ravenloft.commands.Creative;
-import ezzerland.ravenloft.commands.Gamemode;
-import ezzerland.ravenloft.commands.Reload;
-import ezzerland.ravenloft.commands.Spectate;
-import ezzerland.ravenloft.commands.Survival;
+import ezzerland.ravenloftmc.commands.Adventure;
+import ezzerland.ravenloftmc.commands.Check;
+import ezzerland.ravenloftmc.commands.Creative;
+import ezzerland.ravenloftmc.commands.Gamemode;
+import ezzerland.ravenloftmc.commands.Reload;
+import ezzerland.ravenloftmc.commands.Spectate;
+import ezzerland.ravenloftmc.commands.Survival;
 
 public class MyGameMode extends JavaPlugin
 {
