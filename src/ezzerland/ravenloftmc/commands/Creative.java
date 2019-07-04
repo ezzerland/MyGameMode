@@ -14,7 +14,19 @@ public class Creative implements CommandExecutor
   public Creative (MyGameMode plugin) { mgm = plugin; }
 
   public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
-  { //Trying to change gamemode of other player?
+  { //Trying to set mode of all players?
+    if (((args.length == 1) && (args[0].equalsIgnoreCase("all"))) && ((!(sender instanceof Player)) || (sender.hasPermission("mygamemode.creative.all"))))
+    {
+      for (Player target : mgm.getServer().getOnlinePlayers())
+      {
+        mgm.setGameMode(target,GameMode.CREATIVE);
+        target.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%target%", target.getName(), mgm.CleanMessage("%mode%", "CREATIVE", mgm.getConfig().getString("setmode.byother")))));
+      }
+      sender.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%mode%", "CREATIVE", mgm.getConfig().getString("setmode.all"))));
+      return true;
+    }
+    
+    //Trying to change gamemode of other player?
     if ((args.length == 1) && ((!(sender instanceof Player)) || (sender.hasPermission("mygamemode.creative.other"))))
     {
       Player target = mgm.getServer().getPlayer(args[0]);

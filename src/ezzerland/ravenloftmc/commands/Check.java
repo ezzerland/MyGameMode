@@ -17,8 +17,13 @@ public class Check implements CommandExecutor
     if (((sender instanceof Player) || (sender.hasPermission("mygamemode.check"))) && (args.length == 1))
     {
       Player target = mgm.getServer().getPlayer(args[0]);
-      if (target != null && target.isOnline()) {
+      if (target != null && target.isOnline())
+      {
         sender.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%target%", args[0], mgm.CleanMessage("%mode%", target.getGameMode().toString(), mgm.getConfig().getString("getmode")))));
+        if (mgm.godmode.contains(target.getUniqueId().toString()))
+        {
+          sender.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%target%", args[0], mgm.getConfig().getString("getgodmode"))));
+        }
         return true;
       }
       sender.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%target%", args[0], mgm.getConfig().getString("syntax.wrongname"))));

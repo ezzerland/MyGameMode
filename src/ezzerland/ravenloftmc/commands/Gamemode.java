@@ -16,17 +16,33 @@ public class Gamemode implements CommandExecutor
   public Gamemode (MyGameMode plugin) { mgm = plugin; }
 
   public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
-  { //set our TBD vars
-    mode = null;
-    permission = "mygamemode.fakepermission.just.because.i.can"; //lol
+  { //set our TBD vars//Determine mode we're trying to change to
+    
+    if ((args.length>=1) && (!validGameMode(args[0]))) { sender.sendMessage(mgm.CleanMessage("%mode%", args[0], mgm.getConfig().getString("syntax.invalidmode"))); return false; }
+    
+    //Trying to set mode of all players?
+    if ((args.length == 2) && (args[1].equalsIgnoreCase("all")))
+    {
+      permission.concat(".all");
+      if ((!(sender instanceof Player)) || (sender.hasPermission(permission)))
+      {
+        for (Player target : mgm.getServer().getOnlinePlayers())
+        {
+          mgm.setGameMode(target, mode);
+          target.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%target%", target.getName(), mgm.CleanMessage("%mode%", mode.toString(), mgm.getConfig().getString("setmode.byother")))));
+        }
+        sender.sendMessage(mgm.CleanMessage("%player%", sender.getName(), mgm.CleanMessage("%mode%", mode.toString(), mgm.getConfig().getString("setmode.all"))));
+        return true;
+      }
+      return false;
+    }
     
     //Trying to change gamemode of other player?
     if (args.length == 2)
-    { //Determine mode we're trying to change to
-      if (!validGameMode(args[0])) { sender.sendMessage(mgm.CleanMessage("%mode%", args[0], mgm.getConfig().getString("syntax.invalidmode"))); return false; }
+    { 
       permission.concat(".other");
       
-      if ((!(sender instanceof Player)) || (!sender.hasPermission(permission)))
+      if ((!(sender instanceof Player)) || (sender.hasPermission(permission)))
       { //Let's go ahead and try and change modes
         Player target = mgm.getServer().getPlayer(args[1]);
         if ((target != null) && (mgm.setGameMode(target, mode)))
@@ -44,8 +60,7 @@ public class Gamemode implements CommandExecutor
     
     //Trying to change own game mode?
     if ((sender instanceof Player) && (args.length == 1))
-    { //Ignored Console, Determine mode we're trying to change to
-      if (!validGameMode(args[0])) { sender.sendMessage(mgm.CleanMessage("%mode%", args[0], mgm.getConfig().getString("syntax.invalidmode"))); return false; }
+    { //Ignored Console
       permission.concat(".self");
       
       if ((sender.hasPermission(permission)) && (mgm.setGameMode((Player)sender, mode)))

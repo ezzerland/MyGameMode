@@ -1,6 +1,16 @@
 package ezzerland.ravenloftmc;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.List;
+import java.util.UUID;
+
 import org.bukkit.GameMode;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,10 +24,33 @@ import ezzerland.ravenloftmc.commands.Survival;
 
 public class MyGameMode extends JavaPlugin
 {
+  public List<String> godmode;
+  private File godModeFile;
+  public FileConfiguration godModeConfig;
+  
   public void onEnable() 
   {
     saveDefaultConfig();
+    
+    godModeFile = new File(getDataFolder(), "godmode.yml");
+    if (!godModeFile.exists())
+    {
+      getDataFolder().mkdirs();
+      copy(getResource("godmode.yml"), godModeFile);
+    }
+    doReload();
     RegisterCommands();
+  }
+  
+  /* Method to change a players setting for god mode and store it to file if they have perm */
+  public void toggleGodMode(String uuid, boolean mode)
+  {
+    if (mode) { godmode.add(uuid); } else { godmode.remove(uuid); }
+    if (getServer().getPlayer(UUID.fromString(uuid)).hasPermission("mygamemode.godmode.keep"))
+    {
+      godModeConfig.set(uuid, mode);
+      try { godModeConfig.save(godModeFile); } catch (IOException e) { e.printStackTrace(); }
+    }
   }
   
   public void RegisterCommands()
@@ -42,7 +75,31 @@ public class MyGameMode extends JavaPlugin
     return true;
   }
   
-  public void doReload() { reloadConfig(); } //Reload config.yml
+  /* Load or Reload all the configuration files and establish the database we are using */
+  public void doReload()
+  {
+    reloadConfig();
+    godModeConfig = YamlConfiguration.loadConfiguration(godModeFile);
+  }
+  
+  /* Clone internal yml file for initialization/use */
+  private void copy (InputStream from, File to) 
+  {
+    try 
+    {
+      OutputStream out = new FileOutputStream(to);
+      byte[] buffer = new byte[1024];
+      int size = 0;
+      
+      while((size = from.read(buffer)) != -1) 
+      {
+        out.write(buffer, 0, size);
+      }
+      
+      out.close();
+      from.close();
+    } catch(Exception e) {  e.printStackTrace(); }
+  }
   
   /* Correct color codes or replace text if provided */
   public String CleanMessage (String message) { return message.replaceAll("&", "\247"); }

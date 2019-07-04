@@ -21,25 +21,29 @@ authors: [Twage, Infraction]
 
 commands:
   gamemode:
-    description: Change Game Mode to <mode> (Optionally Change [Player])
-    usage: /<command> <Mode> [Player]
+    description: Change Game Mode to <mode> (Optionally Change [Player] or [All])
+    usage: /<command> <Mode> [Player|All]
     aliases: [gamemode, gm]
   gamemodesurvival:
-    description: Change game mode to Survival (Optionally Change [Player])
-    usage: /<command> [Player]
+    description: Change game mode to Survival (Optionally Change [Player] or [All])
+    usage: /<command> [Player|All]
     aliases: [gamemodesurvival, gms, gm0]
   gamemodecreative:
-    description: Change game mode to Creative (Optionally Change [Player])
-    usage: /<command> [Player]
+    description: Change game mode to Creative (Optionally Change [Player] or [All])
+    usage: /<command> [Player|All]
     aliases: [gamemodecreative, gmc, gm1]
   gamemodeadventure:
-    description: Change game mode to Adventure (Optionally Change [Player])
-    usage: /<command> [Player]
+    description: Change game mode to Adventure (Optionally Change [Player] or [All])
+    usage: /<command> [Player|All]
     aliases: [gamemodeadventure, gms, gm2]
   gamemodespectate:
-    description: Change game mode to creative (Optionally Change [Player])
-    usage: /<command> [Player]
+    description: Change game mode to creative (Optionally Change [Player] or [All])
+    usage: /<command> [Player|All]
     aliases: [gamemodespectate, gmsp, gm3]
+  godmode:
+    description: Use God Mode (Optionally give God Mode to [Player] or [All on|off])
+    usage: /<command> [Player|All] [on|off]
+    aliases: [godmode, god]
   checkgamemode:
     description: Check the game mode of <player>
     usage: /<command> <Player>
@@ -62,6 +66,7 @@ permissions:
       mygamemode.creative: true
       mygamemode.adventure: true
       mygamemode.spectate: true
+      mygamemode.godmode: true
       mygamemode.check: true
       mygamemode.reload: true
   mygamemode.survival:
@@ -70,48 +75,84 @@ permissions:
     children:
       mygamemode.survival.self: true
       mygamemode.survival.other: true
+      mygamemode.survival.all: true
   mygamemode.creative:
     default: false
     description: Gives access change self or others into Creative Mode
     children:
       mygamemode.creative.self: true
       mygamemode.creative.other: true
+      mygamemode.creative.all: true
   mygamemode.adventure:
     default: false
     description: Gives access change self or others into Adventure Mode
     children:
       mygamemode.adventure.self: true
       mygamemode.adventure.other: true
+      mygamemode.adventure.all: true
   mygamemode.spectate:
     default: false
     description: Gives access change self or others into Spectate Mode
     children:
       mygamemode.spectate.self: true
       mygamemode.spectate.other: true
+      mygamemode.spectate.all: true
+  mygamemode.godmode:
+    default: false
+    description: Gives access change self or others into God Mode
+    children:
+      mygamemode.godmode.self: true
+      mygamemode.godmode.other: true
+      mygamemode.godmode.all: true
+      mygamemode.godmode.keep: true
   mygamemode.survival.self:
     default: false
     description: Allows player to put themself in Survival Mode
   mygamemode.survival.other:
     default: false
     description: Allows player to put other player in Survival Mode
+  mygamemode.survival.all:
+    default: false
+    description: Allows player to put all other players in Survival Mode
   mygamemode.creative.self:
     default: false
     description: Allows player to put themself in Creative Mode
   mygamemode.creative.other:
     default: false
     description: Allows player to put other player in Creative Mode
+  mygamemode.creative.all:
+    default: false
+    description: Allows player to put all other players in Creative Mode
   mygamemode.adventure.self:
     default: false
     description: Allows player to put themself in Adventure Mode
   mygamemode.adventure.other:
     default: false
     description: Allows player to put other player in Adventure Mode
+  mygamemode.adventure.all:
+    default: false
+    description: Allows player to put all other players in Adventure Mode
   mygamemode.spectate.self:
     default: false
     description: Allows player to put themself in Spectate Mode
   mygamemode.spectate.other:
     default: false
     description: Allows player to put other player in Spectate Mode
+  mygamemode.spectate.all:
+    default: false
+    description: Allows player to put all other players in Spectate Mode
+  mygamemode.godmode.self:
+    default: false
+    description: Allows player to put themself in God Mode
+  mygamemode.godmode.other:
+    default: false
+    description: Allows player to put other player in God Mode
+  mygamemode.godmode.all:
+    default: false
+    description: Allows player to put all other players in God Mode
+  mygamemode.godmode.keep:
+    default: false
+    description: Keep god mode after logging out/server restart
   mygamemode.check:
     default: false
     description: Allows player check what game mode another player is in

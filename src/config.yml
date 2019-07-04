@@ -5,9 +5,10 @@
 #   %player%       %target%       %mode%     #
 #============================================#
 setmode:
-    self: "&7Your game mode has been set to&8: &2%mode%"
-    other: "&b%target%&7's game mode set to&8: &2%mode%"
-    byother: "&b%player% &7set your game mode to&8: &2%mode%"
+  self: "&7Your game mode has been set to&8: &2%mode%"
+  other: "&b%target%'s &7game mode set to&8: &2%mode%"
+  all: "&bEveryone's &7game mode has been set to&8: &2%mode%"
+  byother: "&b%player% &7set your game mode to&8: &2%mode%"
 
 #============================================#
 #                  Get Mode                  #
@@ -16,6 +17,22 @@ setmode:
 #   %player%       %target%       %mode%     #
 #============================================#
 getmode: "&b%target% &7is in Game Mode&8: &2%mode%"
+getgodmode: "&b%target% &7has &2God Mode &7enabled"
+
+#============================================#
+#                  God Mode                  #
+#--------------------------------------------#
+# Placeholders:                              #
+#   %player%       %target%       %mode%     #
+#============================================#
+godmode:
+  self: "&7God Mode&8: %mode%"
+  other: "&b%target%&7 now has God Mode&8: %mode%"
+  all: "&bEveryone&7 now has God Mode&8: %mode%"
+  byother: "&b%player% &7changed your God Mode to&8: %mode%"
+  mode:
+    enabled: "&aOn"
+    disabled: "&cOff"
 
 #============================================#
 #                    Syntax                  #
