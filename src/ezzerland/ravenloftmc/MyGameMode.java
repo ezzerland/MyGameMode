@@ -18,9 +18,11 @@ import ezzerland.ravenloftmc.commands.Adventure;
 import ezzerland.ravenloftmc.commands.Check;
 import ezzerland.ravenloftmc.commands.Creative;
 import ezzerland.ravenloftmc.commands.Gamemode;
+import ezzerland.ravenloftmc.commands.Godmode;
 import ezzerland.ravenloftmc.commands.Reload;
 import ezzerland.ravenloftmc.commands.Spectate;
 import ezzerland.ravenloftmc.commands.Survival;
+import ezzerland.ravenloftmc.listeners.GodModeListener;
 
 public class MyGameMode extends JavaPlugin
 {
@@ -38,6 +40,8 @@ public class MyGameMode extends JavaPlugin
       getDataFolder().mkdirs();
       copy(getResource("godmode.yml"), godModeFile);
     }
+    
+    getServer().getPluginManager().registerEvents(new GodModeListener(this), this);
     doReload();
     RegisterCommands();
   }
@@ -60,6 +64,7 @@ public class MyGameMode extends JavaPlugin
     getCommand("gamemodecreative").setExecutor(new Creative(this));
     getCommand("gamemodeadventure").setExecutor(new Adventure(this));
     getCommand("gamemodespectate").setExecutor(new Spectate(this));
+    getCommand("godmode").setExecutor(new Godmode(this));
     getCommand("checkgamemode").setExecutor(new Check(this));
     getCommand("mygamemodereload").setExecutor(new Reload(this));
   }
