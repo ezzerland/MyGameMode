@@ -17,7 +17,7 @@ public class Godmode implements CommandExecutor
     String task = "godmode.mode.enabled"; //task is what tells the user we turned god mode on or off
     if ((args.length == 2) && ((!(sender instanceof Player)) || (sender.hasPermission("mygamemode.godmode.all"))))
     {
-      if ((!args[0].equalsIgnoreCase("all")) || ((!args[1].equalsIgnoreCase("on"))|| (!args[1].equalsIgnoreCase("off")))) { return false; }
+      if ((!args[0].equalsIgnoreCase("all")) || ((!args[1].equalsIgnoreCase("on")) && (!args[1].equalsIgnoreCase("off")))) { return false; }
       if (args[1].equalsIgnoreCase("off")) { task = "godmode.mode.disabled"; }
       for (Player target: mgm.getServer().getOnlinePlayers())
       { //Change mode for players who need it changed
