@@ -27,7 +27,7 @@ import ezzerland.ravenloftmc.listeners.GodModeListener;
 
 public class MyGameMode extends JavaPlugin
 {
-  public List<String> godmode;
+  public List<String> godmode = new ArrayList<String>();
   private File godModeFile;
   public FileConfiguration godModeConfig;
   
@@ -35,7 +35,6 @@ public class MyGameMode extends JavaPlugin
   {
     saveDefaultConfig();
     
-    godmode = new ArrayList<String>();
     godModeFile = new File(getDataFolder(), "godmode.yml");
     if (!godModeFile.exists())
     {
@@ -59,7 +58,7 @@ public class MyGameMode extends JavaPlugin
     }
   }
   
-  public void RegisterCommands()
+  private void RegisterCommands()
   {
     getCommand("gamemode").setExecutor(new Gamemode(this));
     getCommand("gamemodesurvival").setExecutor(new Survival(this));
