@@ -35,7 +35,7 @@ commands:
   gamemodeadventure:
     description: Change game mode to Adventure (Optionally Change [Player] or [All])
     usage: /<command> [Player|All]
-    aliases: [gamemodeadventure, gms, gm2]
+    aliases: [gamemodeadventure, gma, gm2]
   gamemodespectate:
     description: Change game mode to creative (Optionally Change [Player] or [All])
     usage: /<command> [Player|All]
